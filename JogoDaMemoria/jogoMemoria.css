@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+}
+
+#espaco{
+    width: 300px;
+    margin: 50px auto;
+}
+
+
+#tabuleiro td{
+    width: 100px;
+    height: 100px;
+    background: #99ccff;
+    font-size: 80px;
+    color: #ff0000;
+    cursor: pointer;
+}
