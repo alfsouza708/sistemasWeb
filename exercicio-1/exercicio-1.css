@@ -1,0 +1,55 @@
+body {
+    background-color: #FFFFFF;
+}
+
+h2 {
+    color: #006699;
+    font-size: 19px;
+    margin-bottom: 12px;
+    padding-top: 8px;
+}
+
+img {
+    border: 1px solid #A0BAD5;
+    border-radius: 8px;
+    width: 95px
+}
+
+img {
+    display: block;
+    float: left;
+    margin: 5px;
+}
+
+.info_pessoal {
+    margin-top: 11px;
+    margin-left: 114px;
+}
+
+.barra_menu {
+    background-color: #006699;
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    align-items: center;
+    display: block;
+}
+
+.texto {
+    color: #666666;
+    font-size: 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+* {
+    color: #326C99;
+    text-align: center;
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    padding: 0;
+    outline: 0 none;
+    vertical-align: baseline;
+    text-align: left;
+}
