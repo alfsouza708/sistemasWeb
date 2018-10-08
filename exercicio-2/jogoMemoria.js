@@ -2,7 +2,11 @@ const cards = document.querySelectorAll('.card');
 
 let temCardVirado = false;
 let travaCard = false;
+let countCards = 0;
 let card1, card2;
+
+var countTentativas = 0;
+document.getElementById("tentativas").innerHTML = ("Tentativas: " + countTentativas);
 
 function virarCard() {
     if(travaCard) return;
@@ -21,8 +25,13 @@ function virarCard() {
 }
 
 function checaMatch() {
+    countTentativas++;
+    document.getElementById("tentativas").innerHTML = ("Tentativas: " + countTentativas);
+
     if(card1.dataset.meme === card2.dataset.meme) {
         desativaCards();
+        countCards++;
+        if (countCards === 6) ganhaJogo();
         return;
     }
 
@@ -59,5 +68,11 @@ function resetaCard() {
       card.style.order = posRandom;
     });
   })();
+
+function ganhaJogo() {
+    alert("Você venceu! Número de tentativas: " + countTentativas);
+    location.reload();
+}
+
 
 cards.forEach(card => card.addEventListener('click', virarCard));

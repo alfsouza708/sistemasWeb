@@ -10,6 +10,14 @@ body {
   background: rgb(18, 20, 180);
 }
 
+#tentativas {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  color: aliceblue;
+  text-shadow: 10px;
+  transform: translateY(15px);
+}
+
 .jogo_memoria {
   width: 640px;
   height: 640px;
