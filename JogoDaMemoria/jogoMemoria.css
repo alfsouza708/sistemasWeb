@@ -1,18 +1,47 @@
-h1 {
-    text-align: center;
-}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-#espaco{
-    width: 300px;
-    margin: 50px auto;
-}
+  body {
+    height: 100vh;
+    display: flex;
+    background: #060AB2;
+  }
+  
+  .jogo_memoria {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
 
+  .card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    transform: scale(1);
+  }
 
-#tabuleiro td{
-    width: 100px;
-    height: 100px;
-    background: #99ccff;
-    font-size: 80px;
-    color: #ff0000;
-    cursor: pointer;
+  .card:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+  }
+
+  .card.flip{
+      transform: rotate(180deg);
+  }
+
+.frente,
+.verso {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: #1C7CCC;
 }
