@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+body {
+  height: 100vh;
+  display: flex;
+  background: rgb(18, 20, 180);
+}
+
+.jogo_memoria {
+  width: 640px;
+  height: 640px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
+
+.card {
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  position: relative;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+}
+
+.card:active{
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+.card.vira{
+  transform: rotateY(180deg);
+}
+
+.frente,
+.verso {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  position: absolute;
+  border-radius: 5px;
+  background: rgb(7, 59, 102);
+  backface-visibility: hidden;
+}
+
+.frente {
+  transform: rotateY(180deg);
+}
