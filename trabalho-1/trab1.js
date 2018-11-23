@@ -9,14 +9,14 @@ function onLoadDoc() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var myContext = this.responseText;
-            
             if (myContext) {
                 retornaImagem(myContext);  
-                retornaTitulo(myContext); 
-                retornaAno(myContext);
+                var _nomeDoFilme = retornaTitulo(myContext); 
+                //retornaAno(myContext);
                 retornaSinopse(myContext);
                 retornaCategoria(myContext);
-                retornaAtores(myContext); 
+                retornaAtores(myContext);
+                ChamaOFazTudo(_nomeDoFilme); 
             }
         
             else {
@@ -39,6 +39,8 @@ function retornaTitulo(xml) {
     titles += "<br>" + x[0].childNodes[3].innerHTML + "<br>";
     
     document.getElementById("destino").innerHTML += titles;
+
+    return titles;
 }
 
 function retornaAno(xml) {
