@@ -11,8 +11,9 @@ function onLoadDoc() {
             var myContext = this.responseText;
             
             if (myContext) {
-                //retornaImagem(myContext);  
+                retornaImagem(myContext);  
                 retornaTitulo(myContext); 
+                retornaAno(myContext);
                 retornaSinopse(myContext);
                 retornaCategoria(myContext);
                 retornaAtores(myContext); 
@@ -40,16 +41,33 @@ function retornaTitulo(xml) {
     document.getElementById("destino").innerHTML += titles;
 }
 
-function retornaImagem(xml) {
+function retornaAno(xml) {
     var i;
-    var images = [];
+    var anos = [];
     var parser=new DOMParser();
     var xmlDoc=parser.parseFromString(xml,"text/html");
     var x = xmlDoc.getElementsByTagName("div");
+    console.log(x[9].childNodes);
 
-    images += x[0].childNodes[1].nodeValue + "<br>";
+    anos += "<br>" + x[0].childNodes[5].innerHTML + "<br>";
     
-    document.getElementById("destino").innerHTML += images;
+    document.getElementById("destino").innerHTML += anos;
+}
+
+function retornaImagem(xml) {
+    var i;
+    var images = [];
+    var img = document.createElement("img");
+    var parser=new DOMParser();
+    var xmlDoc=parser.parseFromString(xml,"text/html");
+    var x = xmlDoc.getElementsByTagName("div");
+    var src = document.getElementById("destino");
+
+    images = "https://leandrojsa.github.io/" + x[0].childNodes[1].attributes[0].nodeValue;
+
+    img.src = images;
+    src.appendChild(img);
+    
 }
 
 function retornaCategoria(xml) {
