@@ -13,13 +13,13 @@ function onLoadDoc() {
             var xmlDoc=parser.parseFromString(myContext,"text/html");
             if (xmlDoc) {
                 var _indiceDoFilme = pesquisaOQ(xmlDoc, cat_input, ano_input, ator_input, info_input);
-                //retornaImagem(xmlDoc, _indiceDoFilme);  
-                //var _nomeDoFilme = retornaTitulo(xmlDoc, _indiceDoFilme); 
-                //retornaAno(xmlDoc, _indiceDoFilme);
-                //retornaSinopse(xmlDoc, _indiceDoFilme);
-                //retornaCategoria(xmlDoc, _indiceDoFilme);
-                //retornaAtores(xmlDoc, _indiceDoFilme); 
-                //ChamaOFazTudo(_nomeDoFilme);
+                retornaImagem(xmlDoc, _indiceDoFilme);  
+                var _nomeDoFilme = retornaTitulo(xmlDoc, _indiceDoFilme); 
+                retornaAno(xmlDoc, _indiceDoFilme);
+                retornaSinopse(xmlDoc, _indiceDoFilme);
+                retornaCategoria(xmlDoc, _indiceDoFilme);
+                retornaAtores(xmlDoc, _indiceDoFilme); 
+                ChamaOFazTudo(_nomeDoFilme);
                 } 
             else {
                 document.getElementById("destino").innerHTML = "Não tem filme";
@@ -204,16 +204,33 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         return indice;
     }
     // UTILIZAR ESTE PARA TESTE!!!!!!!!!
-    if (arr[0] == 1) {
-        text = x[0].childNodes[11].innerText.toString();
-        console.log(text);
+    if (arr[0] == 1) {        
         for (i = 0; i < x.length; i++) {
-            if (text.includes(cat)) {
-                console.log(i);
-                arr2 += i;
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-        }
-        console.log(arr2);
+            
+            console.log(y);
+            
+            if(y.includes(cat)){
+                console.log(i);
+                arr2.push(i);
+            }
+
+            //var r = x[i].childNodes[11].innerHTML.replace("\n        <li>","").replace("      ","").replace("\n", "").replace("        ","").replace("</li>","");
+            //console.log(r);
+            //console.log(text);
+            //var t = text.trim().toLowerCase();
+            //if (t === cat) {
+            //    console.log(i);
+            //    arr2.push(i);
+            //}           
+        }     
+        console.log(arr2);   
+        console.log("TAMNAHO : " + arr2.length);  
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
         console.log(indice);
         return indice;
