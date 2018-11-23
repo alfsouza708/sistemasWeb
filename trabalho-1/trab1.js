@@ -36,7 +36,6 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
     var x = xml.getElementsByTagName("div");
     var arr = [0,0,0,0];
     var arr2 = [];
-
     
     if (cat != "") {
         arr[0]++;
@@ -50,20 +49,37 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
     if (info != "") {
         arr[3]++;
     }
-
+//JA FOI
     if (arr[0] == 1 && arr[1] == 1 && arr[2] == 1 && arr[3] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
-            }
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
-            }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[5].innerHTML.substring(17, 21);
+                if(text === ano){
+                    text = x[i].childNodes[15].innerText.toString();
+                    y = text.replace("        ","").split("\n");
+                    y = y.filter(o=> o != "" && o != "      ");
+
+                    for(var u = 0;u< y.length;u++){
+                        y[u] = y[u].trim().toLowerCase();
+                    }
+
+                    if(y.includes(ator)){
+                        var teste = [];
+                        teste.push(info.toLowerCase());
+                        text = x[i].childNodes[7].innerHTML;
+                        if(contemInfo(text.toLowerCase(), teste)){
+                            arr2.push(i);
+                        }
+                    }
+                }
             }
         }
 
@@ -71,17 +87,32 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         console.log(indice);
         return indice;
     }
-
+// JA FOI
     if (arr[0] == 1 && arr[1] == 1 && arr[2] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
-            }
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[5].innerHTML.substring(17, 21);
+                if(text === ano){
+                    text = x[i].childNodes[15].innerText.toString();
+                    y = text.replace("        ","").split("\n");
+                    y = y.filter(o=> o != "" && o != "      ");
+
+                    for(var u = 0;u< y.length;u++){
+                        y[u] = y[u].trim().toLowerCase();
+                    }
+
+                    if(y.includes(ator)){
+                        arr2.push(i);
+                    }
+                }
             }
         }
 
@@ -89,17 +120,27 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         console.log(indice);
         return indice;
     }
-
+//JA FOI
     if (arr[0] == 1 && arr[1] == 1 && arr[3] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
-            }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[5].innerHTML.substring(17, 21);
+                if(text === ano){
+                    var teste = [];
+                    teste.push(info.toLowerCase());
+                    text = x[i].childNodes[7].innerHTML;
+                    if(contemInfo(text.toLowerCase(), teste)){
+                        arr2.push(i);
+                    }
+                }
             }
         }
 
@@ -107,18 +148,36 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         console.log(indice);
         return indice;
     }
-
+//JA FOI
     if (arr[0] == 1 && arr[2] == 1 && arr[3] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[15].innerText.toString();
+                y = text.replace("        ","").split("\n");
+                y = y.filter(o=> o != "" && o != "      ");
+
+                for(var u = 0;u< y.length;u++){
+                    y[u] = y[u].trim().toLowerCase();
+                }
+
+                if(y.includes(ator)){
+                    var teste = [];
+                    teste.push(info.toLowerCase());
+                    text = x[i].childNodes[7].innerHTML;
+                    if(contemInfo(text.toLowerCase(), teste)){
+                        arr2.push(i);
+                    }
+                }
             }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
-            }
+            
         }
 
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
@@ -126,31 +185,23 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         return indice;
     }
 
-    if (arr[1] == 1 && arr[2] == 1 && arr[3] == 1) {
-        for (i = 0; i < x.length; i++) {
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
-            }
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
-            }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
-            }
-        }
-
-        var indice = arr2[Math.floor(Math.random() * arr2.length)];
-        console.log(indice);
-        return indice;
-    }
-
+//JA FOI
     if (arr[0] == 1 && arr[1] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[5].innerHTML.substring(17, 21);
+                if(text === ano){
+                    arr2.push(i);
+                }
             }
         }
 
@@ -158,15 +209,57 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         console.log(indice);
         return indice;
     }
+//JA FOI
+    if (arr[0] == 1 && arr[2] == 1) {
+        for (i = 0; i < x.length; i++) {
 
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
+            }
+            
+            if(y.includes(cat)){
+                text = x[i].childNodes[15].innerText.toString();
+                y = text.replace("        ","").split("\n");
+                y = y.filter(o=> o != "" && o != "      ");
+
+                for(var u = 0;u< y.length;u++){
+                    y[u] = y[u].trim().toLowerCase();
+                }
+
+                if(y.includes(ator)){
+                    arr2.push(i);
+                }
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+//JAFOI
     if (arr[0] == 1 && arr[3] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (cat.includes(x[i].childNodes[11].innerText)) {
-                arr2 += i;
+
+            text = x[i].childNodes[11].innerText.toString();
+            var y = text.replace("        ","").split("\n");
+            y = y.filter(o=> o != "" && o != "      ");
+
+            for(var u = 0;u< y.length;u++){
+                y[u] = y[u].trim().toLowerCase();
             }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
-            }
+            
+            if(y.includes(cat)){
+                var teste = [];
+                teste.push(info.toLowerCase());
+                text = x[i].childNodes[7].innerHTML;
+                if(contemInfo(text.toLowerCase(), teste)){
+                    arr2.push(i);
+                }
+            }   
         }
 
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
@@ -174,96 +267,70 @@ function pesquisaOQ(xml, cat, ano, ator, info) {
         return indice;
     }
 
-    if (arr[2] == 1 && arr[3] == 1) {
-        for (i = 0; i < x.length; i++) {
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
-            }
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
-            }
-        }
-
-        var indice = arr2[Math.floor(Math.random() * arr2.length)];
-        console.log(indice);
-        return indice;
-    }
-
-    if (arr[1] == 1 && arr[2] == 1) {
-        for (i = 0; i < x.length; i++) {
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
-            }
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
-            }
-        }
-
-        var indice = arr2[Math.floor(Math.random() * arr2.length)];
-        console.log(indice);
-        return indice;
-    }
     // UTILIZAR ESTE PARA TESTE!!!!!!!!!
+    //JA FOI
     if (arr[0] == 1) {        
         for (i = 0; i < x.length; i++) {
             text = x[i].childNodes[11].innerText.toString();
             var y = text.replace("        ","").split("\n");
             y = y.filter(o=> o != "" && o != "      ");
+
             for(var u = 0;u< y.length;u++){
                 y[u] = y[u].trim().toLowerCase();
             }
             
-            console.log(y);
-            
             if(y.includes(cat)){
                 console.log(i);
                 arr2.push(i);
-            }
-
-            //var r = x[i].childNodes[11].innerHTML.replace("\n        <li>","").replace("      ","").replace("\n", "").replace("        ","").replace("</li>","");
-            //console.log(r);
-            //console.log(text);
-            //var t = text.trim().toLowerCase();
-            //if (t === cat) {
-            //    console.log(i);
-            //    arr2.push(i);
-            //}           
+            }         
         }     
-        console.log(arr2);   
-        console.log("TAMNAHO : " + arr2.length);  
+        //console.log("TAMANHO : " + arr2.length);  
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
         console.log(indice);
         return indice;
     }
-
+//JA FOI
     if (arr[1] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (ano.includes(x[i].childNodes[5].innerText)) {
-                arr2 += i;
+            text = x[i].childNodes[5].innerHTML.substring(17, 21);
+            if(text === ano){
+                console.log(1);
+                arr2.push(i);
             }
-        }
+        } 
 
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
         console.log(indice);
         return indice;
     }
-
+//JA FOI
     if (arr[2] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (ator.includes(x[i].childNodes[15].innerText)) {
-                arr2 += i;
-            }
+            text = x[i].childNodes[15].innerText.toString();
+                y = text.replace("        ","").split("\n");
+                y = y.filter(o=> o != "" && o != "      ");
+
+                for(var u = 0;u< y.length;u++){
+                    y[u] = y[u].trim().toLowerCase();
+                }
+
+                if(y.includes(ator)){
+                    arr2.push(i);
+                }
         }
 
         var indice = arr2[Math.floor(Math.random() * arr2.length)];
         console.log(indice);
         return indice;
     }
-
+//JA FOI
     if (arr[3] == 1) {
         for (i = 0; i < x.length; i++) {
-            if (info.includes(x[i].childNodes[7].innerText)) {
-                arr2 += i;
+            var teste = [];
+            teste.push(info.toLowerCase());
+            text = x[i].childNodes[7].innerHTML;
+            if(contemInfo(text.toLowerCase(), teste)){
+                arr2.push(i);
             }
         }
 
@@ -334,4 +401,14 @@ function retornaAtores(xml, i) {
     atores += "<br>" + x[i].childNodes[15].innerHTML + "<br>";
 
     document.getElementById("destino").innerHTML += atores;
+}
+
+function contemInfo(str, substrings) { //Função que verifica string contida em texto
+    for (var i = 0; i != substrings.length; i++) {
+       var substring = substrings[i];
+       if (str.indexOf(substring) != - 1) {
+         return true;
+       }
+    }
+    return false; 
 }
