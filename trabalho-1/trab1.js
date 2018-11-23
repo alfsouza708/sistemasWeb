@@ -9,14 +9,17 @@ function onLoadDoc() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var myContext = this.responseText;
+            var parser=new DOMParser();
+            var xmlDoc=parser.parseFromString(myContext,"text/html");
             
-            if (myContext) {
-                retornaImagem(myContext);  
-                retornaTitulo(myContext); 
-                retornaAno(myContext);
-                retornaSinopse(myContext);
-                retornaCategoria(myContext);
-                retornaAtores(myContext); 
+            if (xmlDoc) {
+                //pesquisaOQ(cat_input, ano_input, ator_input, info_input);
+                retornaImagem(xmlDoc);  
+                retornaTitulo(xmlDoc); 
+                retornaAno(xmlDoc);
+                retornaSinopse(xmlDoc);
+                retornaCategoria(xmlDoc);
+                retornaAtores(xmlDoc); 
             }
         
             else {
@@ -28,12 +31,14 @@ function onLoadDoc() {
     xmlhttp.send();
 } 
 
+function pesquisaOQ(cat, ano, ator, info) {
+    
+}
+
 function retornaTitulo(xml) {
     var i;
     var titles = [];
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
     console.log(x[9].childNodes);
 
     titles += "<br>" + x[0].childNodes[3].innerHTML + "<br>";
@@ -44,9 +49,7 @@ function retornaTitulo(xml) {
 function retornaAno(xml) {
     var i;
     var anos = [];
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
     console.log(x[9].childNodes);
 
     anos += "<br>" + x[0].childNodes[5].innerHTML + "<br>";
@@ -58,9 +61,7 @@ function retornaImagem(xml) {
     var i;
     var images = [];
     var img = document.createElement("img");
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
     var src = document.getElementById("destino");
 
     images = "https://leandrojsa.github.io/" + x[0].childNodes[1].attributes[0].nodeValue;
@@ -73,9 +74,7 @@ function retornaImagem(xml) {
 function retornaCategoria(xml) {
     var i;
     var categories = [];
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
 
     categories += "<br>" + x[0].childNodes[11].innerHTML + "<br>";
 
@@ -85,9 +84,7 @@ function retornaCategoria(xml) {
 function retornaSinopse(xml) {
     var i;
     var sinopses = [];
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
 
     sinopses += "<br>" + x[0].childNodes[7].innerHTML + "<br>";
     
@@ -97,9 +94,7 @@ function retornaSinopse(xml) {
 function retornaAtores(xml) {
     var i;
     var atores = [];
-    var parser=new DOMParser();
-    var xmlDoc=parser.parseFromString(xml,"text/html");
-    var x = xmlDoc.getElementsByTagName("div");
+    var x = xml.getElementsByTagName("div");
 
     atores += "<br>" + x[0].childNodes[15].innerHTML + "<br>";
 
