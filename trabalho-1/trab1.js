@@ -12,7 +12,7 @@ function onLoadDoc() {
             var parser=new DOMParser();
             var xmlDoc=parser.parseFromString(myContext,"text/html");
             if (xmlDoc) {
-                var _indiceDoFilme = pesquisaOQ(cat_input, ano_input, ator_input, info_input);
+                var _indiceDoFilme = pesquisaOQ(xmlDoc, cat_input, ano_input, ator_input, info_input);
                 //retornaImagem(xmlDoc, _indiceDoFilme);  
                 //var _nomeDoFilme = retornaTitulo(xmlDoc, _indiceDoFilme); 
                 //retornaAno(xmlDoc, _indiceDoFilme);
@@ -30,9 +30,13 @@ function onLoadDoc() {
     xmlhttp.send();
 } 
 
-function pesquisaOQ(cat, ano, ator, info) {
+function pesquisaOQ(xml, cat, ano, ator, info) {
     var i;
+    var indice;
+    var x = xml.getElementsByTagName("div");
     var arr = [0,0,0,0];
+    var arr2 = [];
+
     
     if (cat != "") {
         arr[0]++;
@@ -47,7 +51,210 @@ function pesquisaOQ(cat, ano, ator, info) {
         arr[3]++;
     }
 
-    return i;
+    if (arr[0] == 1 && arr[1] == 1 && arr[2] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[0] == 1 && arr[1] == 1 && arr[2] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[0] == 1 && arr[1] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[0] == 1 && arr[2] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[1] == 1 && arr[2] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[0] == 1 && arr[1] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[0] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (cat.includes(x[i].childNodes[11].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[2] == 1 && arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[1] == 1 && arr[2] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+    // UTILIZAR ESTE PARA TESTE!!!!!!!!!
+    if (arr[0] == 1) {
+        text = x[0].childNodes[11].innerText.toString();
+        console.log(text);
+        for (i = 0; i < x.length; i++) {
+            if (text.includes(cat)) {
+                console.log(i);
+                arr2 += i;
+            }
+        }
+        console.log(arr2);
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[1] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (ano.includes(x[i].childNodes[5].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[2] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (ator.includes(x[i].childNodes[15].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
+    if (arr[3] == 1) {
+        for (i = 0; i < x.length; i++) {
+            if (info.includes(x[i].childNodes[7].innerText)) {
+                arr2 += i;
+            }
+        }
+
+        var indice = arr2[Math.floor(Math.random() * arr2.length)];
+        console.log(indice);
+        return indice;
+    }
+
 }
 
 function retornaTitulo(xml, i) {
